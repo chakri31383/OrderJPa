@@ -15,9 +15,12 @@ public class OrderController {
     @PostMapping("/add")
     public ResponseEntity<String> addOrder(@RequestBody Order order) {
         if (order.getOrderId() == null || order.getOrderId().isEmpty()) {
+        	
             return ResponseEntity.badRequest().body("Order ID cannot be null or empty");
+            
         }
         try {
+        	System.out.println("product added");
             Order savedOrder = orderService.addOrder(order);
             return ResponseEntity.ok("Order added successfully with ID: " + savedOrder.getOrderId());
         } catch (Exception e) {
